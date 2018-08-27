@@ -86,7 +86,7 @@ export default {
     },
     url: {
       type: String,
-      default: 'items',
+      required: true,
     },
     queryParameter: {
       type: String,

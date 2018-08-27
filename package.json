@@ -1,15 +1,44 @@
 {
   "name": "vue-bulma-paginate",
-  "version": "0.1.1",
+  "version": "0.1.3",
+  "description": "Simple pagination for Vue.js and Bulma CSS framework.",
+  "keywords": [
+    "pagination",
+    "vue",
+    "Vue.js",
+    "Bulma"
+  ],
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Javier Granda Ruiz",
+    "email": "jgrandar@gmail.com",
+    "url": "https://github.com/jgrandar"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jgrandar/vue-bulma-paginate"
+  },
+  "bugs": {
+    "url": "https://github.com/jgrandar/vue-bulma-paginate/issues"
+  },
+  "files": [
+    "dist/*",
+    "src/components/*"
+  ],
+  "directories": {
+    "src": "./src",
+    "lib": "./dist"
+  },
+  "main": "./dist/vue-bulma-paginate.common.js",
+  "browser": "./dist/vue-bulma-paginate.common.js",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-package": "vue-cli-service build --target lib --name vue-bulma-paginate 'src/components/Pagination.vue'",
+    "build-lib": "vue-cli-service build --target lib --name vue-bulma-paginate 'src/components/Pagination.vue'",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
-  "main": "./dist/vue-bulma-paginate.common.js",
   "dependencies": {
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
