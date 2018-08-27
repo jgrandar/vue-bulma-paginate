@@ -5,17 +5,15 @@
     role="navigation"
     aria-label="pagination"
   >
-    <button
+    <a
       :disabled="currentPage < 2"
       class="pagination-previous"
-      type="button"
       @click="previous"
       v-text="previousText"
     />
-    <button
+    <a
       :disabled="currentPage > pagesTotal - 1"
       class="pagination-next"
-      type="button"
       @click="next"
       v-text="nextText"
     />
