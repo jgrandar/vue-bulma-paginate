@@ -32,7 +32,7 @@ components: {
   Pagination,
 }
 ...
-<pagination
+<Pagination
   :itemsTotal="pagination.itemsTotal"
   :itemsPerPage="pagination.perPage"
   :currentPage="pagination.currentPage"
@@ -45,3 +45,4 @@ components: {
   :pageText="Images set"
 />
 ```
+A full example is provided at the Demo.

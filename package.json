@@ -27,19 +27,20 @@
   ],
   "directories": {
     "src": "./src",
-    "lib": "./dist"
+    "lib": "./lib"
   },
   "main": "./dist/vue-bulma-paginate.common.js",
   "browser": "./dist/vue-bulma-paginate.common.js",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build-lib": "vue-cli-service build --target lib --name vue-bulma-paginate 'src/components/Pagination.vue'",
+    "buildDemo": "vue-cli-service build",
+    "buildLib": "vue-cli-service build --target lib --name vue-bulma-paginate --dest lib 'src/components/Pagination.vue'",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "bulma": "^0.7.1",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },
@@ -52,6 +53,8 @@
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.17"
   }
 }
