@@ -16,7 +16,7 @@ npm install vue-bulma-paginate
 |itemsTotal|Number|True|0|Number of elements to paginate|
 |itemsPerPage|Number|True|1|Number of items per page|
 |currentPage|Number|True|1|Current page|
-|buttonsMax|Number|False|7|Maximum number of buttons to show including first and last page|
+|buttonsMax|Number|False|7|Maximum number of buttons to show including first and last page (must be odd)|
 |url|String|True||Vue Router named route|
 |queryParameter|String|False|page|Custom query parameter (e.g. example.com/gallery?**images-set**=2)|
 |nextText|String|False|Next|Custom text for next button|
@@ -45,4 +45,4 @@ components: {
   :pageText="Images set"
 />
 ```
-A full example is provided at the Demo.
+A full example is provided at the [Demo](https://jgrandar.github.io/vue-bulma-paginate/).
