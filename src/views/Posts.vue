@@ -63,7 +63,7 @@
 import Pagination from '@/components/Pagination.vue';
 
 export default {
-  name: 'posts',
+  name: 'Posts',
 
   components: {
     Pagination,
@@ -136,7 +136,6 @@ export default {
     },
     checkLastPage() {
       if (this.currentPage > this.lastPage) {
-        console.log('overflow');
         this.$router.push({
           name: this.url,
           query: { [this.queryParameter]: this.lastPage },

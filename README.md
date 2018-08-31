@@ -13,12 +13,12 @@ npm install vue-bulma-paginate
 
 |Prop|Type|Required|Default|Description|
 |----|----|--------|-------|-----------|
-|itemsTotal|Number|True|0|Number of elements to paginate|
-|itemsPerPage|Number|True|1|Number of items per page|
+|itemsTotal|Number|True|0|Elements to paginate|
+|itemsPerPage|Number|True|1|Elements per page|
 |currentPage|Number|True|1|Current page|
-|buttonsMax|Number|False|7|Maximum number of buttons to show including first and last page (must be odd)|
 |url|String|True||Vue Router named route|
-|queryParameter|String|False|page|Custom query parameter (e.g. example.com/gallery?**images-set**=2)|
+|buttonsMax|Number|False|7|Maximum number of buttons to show including first and last page (must be odd)|
+|queryParameter|String|False|page|Custom query parameter (e.g., example.com/gallery?**images-set**=2)|
 |nextText|String|False|Next|Custom text for next button|
 |previousText|String|False|Previous|Custom text for previous button|
 |goToText|String|False|Goto page|Custom text for aria-label attribute on "a" tags|
