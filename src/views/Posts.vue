@@ -1,26 +1,61 @@
 <template>
-  <div class="home">
+  <div>
+    <h2 class="title">Configuration</h2>
+    <div class="field is-grouped">
+      <div class="control">
+        <label class="label">Items Total</label>
+        <input
+          v-model.number="itemsTotal"
+          class="input"
+          type="number"
+          @change="checkLastPage"
+        >
+      </div>
+      <div class="control">
+        <label class="label">Items per page</label>
+        <input
+          v-model.number="itemsPerPage"
+          class="input"
+          type="number"
+          @change="checkLastPage"
+        >
+      </div>
+      <div class="control">
+        <label class="label">Max buttons</label>
+        <input
+          v-model.number="buttonsMax"
+          class="input"
+          type="number"
+          min="5"
+          title="Odd numbers only"
+        >
+      </div>
+    </div>
+    <hr>
     <h2 class="title">Post list</h2>
     <div class="posts">
       <article
-        v-for="post in posts"
-        :key="post"
+        v-for="(item, index) in items"
+        :key="index"
       >
-        <p v-text="post"></p>
+        <p v-text="item"></p>
       </article>
     </div>
     <Pagination
-      :itemsTotal="pagination.itemsTotal"
-      :itemsPerPage="pagination.perPage"
-      :currentPage="pagination.currentPage"
-      :buttonsMax="pagination.buttonsMax"
-      :url="pagination.url"
-      :queryParameter="pagination.queryParameter"
+      :itemsTotal="itemsTotal"
+      :itemsPerPage="itemsPerPage"
+      :currentPage="currentPage"
+      :buttonsMax="buttonsMax"
+      :url="url"
+      :queryParameter="queryParameter"
       :nextText="pagination.nextText"
       :previousText="pagination.previousText"
       :goToText="pagination.goToText"
       :pageText="pagination.pageText"
     />
+    <nav>
+      <a href="https://github.com/jgrandar/vue-bulma-paginate">Go back to GitHub repository</a>
+    </nav>
   </div>
 </template>
 
@@ -36,54 +71,77 @@ export default {
 
   data() {
     return {
+      itemsTotal: 100,
+      itemsPerPage: 3,
+      buttonsMax: 9,
+      currentPage: 1,
+      queryParameter: 'set',
+      url: this.$route.name,
       pagination: {
-        buttonsMax: 9,
-        url: this.$route.name,
-        queryParameter: 'set',
         nextText: 'Next set',
         previousText: 'Previous set',
         goToText: 'Go to set',
         pageText: 'Set',
       },
-      asyncData: null,
-      readyPosts: null,
     };
   },
 
   computed: {
-    posts() {
-      return this.readyPosts;
+    items() {
+      return this.allItems.slice(
+        this.itemsPerPage * (this.currentPage - 1),
+        this.itemsPerPage * this.currentPage,
+      );
+    },
+    allItems() {
+      const items = [];
+
+      for (let i = 0; i < this.itemsTotal; i += 1) {
+        items.push(`Post ${i + 1} content`);
+      }
+
+      return items;
+    },
+    lastPage() {
+      return Math.ceil(this.allItems.length / this.itemsPerPage);
     },
   },
 
-  created() {
-    const posts = [];
-    for (let i = 0; i < 100; i += 1) {
-      posts.push(`Post ${i + 1} content`);
-    }
-    this.asyncData = posts;
-
-    this.getPosts(this.$route.query[this.pagination.queryParameter]);
+  watch: {
+    buttonsMax(newValue, oldValue) {
+      if (newValue % 2) {
+        return;
+      }
+      if (newValue < oldValue) {
+        this.buttonsMax = newValue - 1;
+      }
+      if (newValue > oldValue) {
+        this.buttonsMax = newValue + 1;
+      }
+    },
   },
 
   beforeRouteUpdate(to, from, next) {
-    this.getPosts(to.query[this.pagination.queryParameter]);
+    this.setCurrentPage(to.query[this.queryParameter]);
     next();
   },
 
   methods: {
-    getPosts(pageParam) {
-      // Get your async data here.
-      const perPage = 3;
-      const page = this.parseQueryParameter(pageParam);
-
-      this.pagination.itemsTotal = this.asyncData.length;
-      this.pagination.perPage = perPage;
-      this.pagination.currentPage = page;
-      this.readyPosts = this.asyncData.slice(perPage * (page - 1), perPage * page);
+    setCurrentPage(parameter) {
+      let page = 1;
+      if (parameter != null) {
+        page = parseInt(parameter, 10);
+      }
+      this.currentPage = page;
     },
-    parseQueryParameter(parameter) {
-      return parameter != null ? parseInt(parameter, 10) : 1;
+    checkLastPage() {
+      if (this.currentPage > this.lastPage) {
+        console.log('overflow');
+        this.$router.push({
+          name: this.url,
+          query: { [this.queryParameter]: this.lastPage },
+        });
+      }
     },
   },
 };
@@ -98,6 +156,9 @@ export default {
   }
   h2 {
     text-align: center;
+  }
+  nav {
+    margin-top: 30px;
   }
   .posts {
     margin: 30px 0;
