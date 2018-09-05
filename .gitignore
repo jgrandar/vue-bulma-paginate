@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 /lib
-Dockerfile
+Datos.txt
 
 # local env files
 .env.local

@@ -1,6 +1,6 @@
 {
   "name": "vue-bulma-paginate",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Simple pagination for Vue.js and Bulma CSS framework.",
   "keywords": [
     "pagination",
@@ -30,6 +30,7 @@
     "lib": "./lib"
   },
   "browser": "./lib/vue-bulma-paginate.common.js",
+  "main": "./lib/vue-bulma-paginate.umd.js",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
